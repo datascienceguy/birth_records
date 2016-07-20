@@ -104,6 +104,12 @@ with open(inputFilePath) as fp:
         wasVaginalDelivery = {'1': 1, '2': 0, '9': None}.get(line[407], None)
 
         # Maternal Morbidity
+        maternalTransfusion = {'Y': 1, 'N': 0, 'U': None}.get(line[414], None)
+        perinealLaceration = {'Y': 1, 'N': 0, 'U': None}.get(line[415], None)
+        rupturedUterus = {'Y': 1, 'N': 0, 'U': None}.get(line[416], None)
+        unplannedHysterectomy = {'Y': 1, 'N': 0, 'U': None}.get(line[417], None)
+        admitToICU = {'Y': 1, 'N': 0, 'U': None}.get(line[418], None)
+        noMorbidity = {'1': 1, '0': 0, '9': None}.get(line[426], None)
 
         babyGender = line[474]
         numBornAtDelivery = line[453]
