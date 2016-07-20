@@ -38,6 +38,7 @@ with open(inputFilePath) as fp:
         momDeliveryWeightPounds = {'999': None}.get(line[298:301], line[298:301])
         momWeightGain = {'99': None}.get(line[303:305], line[303:305])
         momBMI = {'99.9': None}.get(line[282:286], line[282:286])
+        numYearsSincePeriod = {'9999', None}.get(line[480:484], dobYY-line[480:484])
 
         dadAge = {'99': None}.get(line[146:148], line[146:148])
         dadRace = {'1': 'White', '2': 'Black', '3': 'AIAN', '4': 'Asian', '5': 'NHOPI', '6': 'Multi'}.get(line[151], None)
@@ -111,9 +112,48 @@ with open(inputFilePath) as fp:
         admitToICU = {'Y': 1, 'N': 0, 'U': None}.get(line[418], None)
         noMorbidity = {'1': 1, '0': 0, '9': None}.get(line[426], None)
 
-        babyGender = line[474]
-        numBornAtDelivery = line[453]
-        birthWeight = line[503:507]
+        # APGAR scores
+        fiveMinuteAPGAR = {'99': None}.get(line[443:445], line[443:445])
+        tenMinuteAPGAR = {'99': None, '88': None}.get(line[447:449], line[447:449])
+
+        isTwin = {'2': 1}.get(line[453], 0)
+        isTriplet = {'3': 1}.get(line[453], 0)
+        isQuadruplet = {'4': 1}.get(line[453], 0)
+        isQuintOrHigher = {'5': 1}.get(line[453], 0)
+
+        isSecondInSet = {'2': 1, '9': None}.get(line[458], 0)
+        isThirdInSet = {'3': 1, '9': None}.get(line[458], 0)
+        isFourthOrHigherInSet = {'4': 1, '5': 1, '9': None}.get(line[458], 0)
+
+        isMaleBaby = {'M':1}.get(line[474], 0)
+        birthWeightInGrams = line[503:507]
+
+        numWeeksAtBirthSinceLastPeriod = {'99': None}.get(line[489:491], line[489:491])
+        numWeeksAtBirthObstetricEstimate = {'99': None}.get(line[491:493], line[491:493])
+
+        # Abnormal conditons of newborn
+        assistedVentilationImmediate = {'Y': 1, 'N': 0, 'U': None}.get(line[516], None)
+        assistedVentilationAfter6Hrs = {'Y': 1, 'N': 0, 'U': None}.get(line[517], None)
+        admittedToNICU = {'Y': 1, 'N': 0, 'U': None}.get(line[518], None)
+        surfactant = {'Y': 1, 'N': 0, 'U': None}.get(line[519], None)
+        antibioticsForNewborn = {'Y': 1, 'N': 0, 'U': None}.get(line[520], None)
+        newbornSeizures = {'Y': 1, 'N': 0, 'U': None}.get(line[521], None)
+        noAbnormalNewbornConditions = {'1': 1, '0': 0, '9': None}.get(line[530], None)
+
+        # Congenital abnormalities
+        anencephaly = {'Y': 1, 'N': 0, 'U': None}.get(line[536], None)
+        spinaBifida = {'Y': 1, 'N': 0, 'U': None}.get(line[537], None)
+        congenitalHeartDisease = {'Y': 1, 'N': 0, 'U': None}.get(line[538], None)
+        congenitalHernia = {'Y': 1, 'N': 0, 'U': None}.get(line[539], None)
+        omphalocele = {'Y': 1, 'N': 0, 'U': None}.get(line[540], None)
+        gastroschisis = {'Y': 1, 'N': 0, 'U': None}.get(line[541], None)
+        limbReduction = {'Y': 1, 'N': 0, 'U': None}.get(line[548], None)
+        cleftLip = {'Y': 1, 'N': 0, 'U': None}.get(line[549], None)
+        downSyndrome = {'C': 1, 'N': 0, 'P': None, 'U': None}.get(line[551], None)
+        suspectedChromosomalDisorder = {'C': 1, 'N': 0, 'P': None, 'U': None}.get(line[552], None)
+        hypospadias = {'Y': 1, 'N': 0, 'U': None}.get(line[553], None)
+        noCongenitalAbnormalities = {'1': 1, '0': 0, '9': None}.get(line[560], None)
+
 
         print(dobYY, isBornInHospital,
               momAge, isMomUSBorn, momRace, isMomMarried, isMomHSGrad, isMomCollegeGrad,
