@@ -3,9 +3,8 @@ import pandas as pd
 import numpy as np
 import math
 
-inputFilePath = '/Users/edye/dev/birth_records/2014_births.txt'
-outputFilePath = '/Users/edye/dev/birth_records/2014_births_processed.txt'
-
+inputFilePath = '/Users/edye/data/birth_records/2014/2014_births.txt'
+outputFilePath = '/Users/edye/data/birth_records/2014/2014_births_processed.txt'
 
 def getFrequencies(x):
     # Remove all non-null values
@@ -27,9 +26,8 @@ newBirths = births.copy(deep=False)
 for column in births:
     freqs = getFrequencies(births[column])
     newBirths[column] = births[column].apply(lambda x: getRandValueByDistr(freqs) if math.isnan(x) else x)
-    # births[column].apply()
 
-newBirths.to_csv(outputFilePath, sep='\t', index=False)
+newBirths.to_csv(outputFilePath, sep='\t', index=False, float_format='%.f')
 
 
 # Some things we can do to preprocess the data:

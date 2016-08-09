@@ -1,0 +1,46 @@
+# from __future__ import print_function
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.cross_validation import train_test_split
+from sklearn.metrics import mean_squared_error
+import pandas as pd
+import time
+
+inputFilePath = '/Users/edye/dev/birth_records/2014_births_processed.txt'
+
+births = pd.read_csv(inputFilePath,delimiter="\t")
+
+def testSampleSize(X_all, y_all, num_test, num_train):
+    print "Num train: {}, Num test: {}".format(num_train, num_test)
+
+    X_train, X_test, y_train, y_test = \
+        train_test_split(X_all, y_all, test_size=num_test, train_size=num_train, random_state=42)
+
+    randClf = RandomForestRegressor()
+
+    start = time.time()
+    randClf.fit(X_train, y_train)
+    end = time.time()
+    print "Done!\nTraining time (secs): {:.3f}".format(end - start)
+
+    start = time.time()
+    y_pred = randClf.predict(X_test)
+    end = time.time()
+    print "Done!\Predicting time (secs): {:.3f}".format(end - start)
+
+    print 'MSE of train: {}'.format(mean_squared_error(y_train, randClf.predict(X_train)))
+    print 'MSE of test: {}'.format(mean_squared_error(y_test, y_pred))
+
+
+# Extract feature (X) and target (y) columns
+feature_cols = list(births.columns[1:])  # all columns but first two are features
+target_col = births.columns[0]  # first column is the target/label
+
+X_all = births[feature_cols]  # feature values for all students
+y_all = births[target_col]  # corresponding targets/labels
+
+# Decide how many training vs test samples you want
+sample_sizes = [10, 100, 1000, 10000, 1000000, 2000000, 3000000, 3900000]
+for sample_size in sample_sizes:
+    num_train = int(sample_size*0.75)
+    num_test = int(sample_size*0.25)
+    testSampleSize(X_all, y_all, num_test, num_train)

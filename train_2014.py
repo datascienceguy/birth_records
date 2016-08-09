@@ -1,9 +1,24 @@
 # from __future__ import print_function
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.cross_validation import train_test_split
 import pandas as pd
+import time
 
 inputFilePath = '/Users/edye/dev/birth_records/small_births.txt'
 
-births = pd.read_csv(inputFilePath,delimiter="\t", nrows=100 )
+births = pd.read_csv(inputFilePath,delimiter="\t", nrows=100000 )
+
+def testSampleSize(X_all, y_all, num_test, num_train):
+    X_train, X_test, y_train, y_test = \
+        train_test_split(X_all, y_all, test_size=num_test, train_size=num_train, random_state=42)
+    randClf = RandomForestRegressor()
+    randClf.fit(X_train, y_train)
+    y_pred = randClf.predict(X_test)
+
+    from sklearn.metrics import mean_squared_error
+    print 'MSE of train: {}'.format(mean_squared_error(y_train, randClf.predict(X_train)))
+    print 'MSE of test: {}'.format(mean_squared_error(y_test, y_pred))
+
 
 # Extract feature (X) and target (y) columns
 feature_cols = list(births.columns[1:])  # all columns but first two are features
@@ -14,25 +29,31 @@ print "Total number of births: {}".format(len(births.index))
 
 X_all = births[feature_cols]  # feature values for all students
 y_all = births[target_col]  # corresponding targets/labels
-print "\nFeature values:-"
-print X_all.head()  # print the first 5 rows
-print "\Target values:-"
-print y_all.head()  # print the first 5 rows
+# print "\nFeature values:-"
+# print X_all.head()  # print the first 5 rows
+# print "\Target values:-"
+# print y_all.head()  # print the first 5 rows
 
-# First, decide how many training vs test samples you want
-num_all = births.shape[0]  # same as len(student_data)
-num_train = int(num_all * 0.75)  # about 75% of the data
-num_test = num_all - num_train
+num_all = births.shape[0]
+
+# Decide how many training vs test samples you want
+train_sample_sizes = [10, 100, 1000, 10000, 1000000, 2000000, 3000000, 3900000]
+for num_train in train_sample_sizes:
+    num_test = num_all - num_train
+    testSampleSize(X_all, y_all, num_test, num_train)
 
 # TODO: Then, select features (X) and corresponding labels (y) for the training and test sets
 # Note: Shuffle the data or randomly select samples to avoid any bias due to ordering in the dataset
-from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = \
-    train_test_split(X_all, y_all, test_size=num_test, train_size=num_train, random_state=42)
+
 
 print "Training set: {} samples".format(X_train.shape[0])
 print "Test set: {} samples".format(X_test.shape[0])
 # Note: If you need a validation set, extract it from within training data
+
+
+# print f1_score(y_test, y_pred, average="macro")
+# randScore = randClf.score(y_test, y_pred)
+# print randScore
 
 # Train a model
 import time
@@ -74,21 +95,21 @@ def train_predict(clf, X_train, y_train, X_test, y_test):
 # from sklearn.linear_model import SGDClassifier
 #from sklearn.neighbors.nearest_centroid import NearestCentroid
 
-from sklearn.ensemble import RandomForestRegressor
-
-
-classifiers = []
-classifiers.append(RandomForestRegressor())
+# from sklearn.ensemble import RandomForestRegressor
+#
+#
+# classifiers = []
+# classifiers.append(RandomForestRegressor())
 # classifiers.append(GradientBoostingClassifier())
 # classifiers.append(SVC())
 # classifiers.append(KNeighborsClassifier())
 # classifiers.append(SGDClassifier(shuffle=True))
 #classifiers.append(NearestCentroid())
 
-
-for classifier in classifiers:
-    for train_size in [int(num_train*0.25), int(num_train*0.5), int(num_train*0.75), num_train]:
-        train_predict(classifier, X_train[:train_size], y_train[:train_size], X_test, y_test)
+#
+# for classifier in classifiers:
+#     for train_size in [int(num_train*0.25), int(num_train*0.5), int(num_train*0.75), num_train]:
+#         train_predict(classifier, X_train[:train_size], y_train[:train_size], X_test, y_test)
 
 # TODO: Fine-tune your model and report the best F1 score
 # from sklearn.grid_search import GridSearchCV
