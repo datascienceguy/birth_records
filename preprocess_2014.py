@@ -27,6 +27,8 @@ for column in births:
     freqs = getFrequencies(births[column])
     newBirths[column] = births[column].apply(lambda x: getRandValueByDistr(freqs) if math.isnan(x) else x)
 
+# Using float_format='%.f' to save space in data file.  No need o store floating points
+# for all the int columns.  This was tripling size of post_processed file.
 newBirths.to_csv(outputFilePath, sep='\t', index=False, float_format='%.f')
 
 

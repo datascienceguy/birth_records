@@ -1,0 +1,42 @@
+Num train: 7, Num test: 2
+Done!
+Training time (secs): 0.018
+Done!\Predicting time (secs): 0.001
+MSE of train: 0.18
+MSE of test: 0.765
+Num train: 75, Num test: 25
+Done!
+Training time (secs): 0.020
+Done!\Predicting time (secs): 0.001
+MSE of train: 0.2876
+MSE of test: 2.8104
+Num train: 750, Num test: 250
+Done!
+Training time (secs): 0.068
+Done!\Predicting time (secs): 0.001
+MSE of train: 0.27956
+MSE of test: 2.04292
+Num train: 7500, Num test: 2500
+Done!
+Training time (secs): 0.573
+Done!\Predicting time (secs): 0.005
+MSE of train: 0.242564
+MSE of test: 1.475768
+Num train: 750000, Num test: 250000
+Done!
+Training time (secs): 120.131
+Done!\Predicting time (secs): 1.997
+MSE of train: 0.228655786667
+MSE of test: 1.27320156
+Num train: 1500000, Num test: 500000
+Done!
+Training time (secs): 274.720
+Done!\Predicting time (secs): 5.003
+MSE of train: 0.225283099378
+MSE of test: 1.2598894425
+Num train: 2250000, Num test: 750000
+Done!
+Training time (secs): 472.294
+Done!\Predicting time (secs): 9.837
+MSE of train: 0.222719563512
+MSE of test: 1.24999127481
