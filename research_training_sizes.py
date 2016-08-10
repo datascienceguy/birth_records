@@ -32,7 +32,7 @@ def testSampleSize(X_all, y_all, num_test, num_train):
 births = pd.read_csv(inputFilePath,delimiter="\t")
 
 # Extract feature (X) and target (y) columns
-feature_cols = list(births.columns[1:])  # all columns but first two are features
+feature_cols = list(births.columns[2:])  # all columns but first two are features
 target_col = births.columns[0]  # first column is the target/label
 
 X_all = births[feature_cols]  # feature values for all students
@@ -44,7 +44,7 @@ gc.collect()
 
 
 # Decide how many training vs test samples you want
-sample_sizes = [10, 100, 1000, 10000, 1000000, 2000000, 3000000]
+sample_sizes = [10, 100, 1000, 10000, 100000, 500000, 1000000, 2000000]
 for sample_size in sample_sizes:
     num_train = int(sample_size*0.75)
     num_test = int(sample_size*0.25)

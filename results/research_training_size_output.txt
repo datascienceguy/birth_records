@@ -1,42 +1,55 @@
 Num train: 7, Num test: 2
 Done!
-Training time (secs): 0.018
+Training time (secs): 0.017
 Done!\Predicting time (secs): 0.001
-MSE of train: 0.18
-MSE of test: 0.765
+MSE of train: 0.15
+MSE of test: 1.225
+
 Num train: 75, Num test: 25
 Done!
-Training time (secs): 0.020
+Training time (secs): 0.019
 Done!\Predicting time (secs): 0.001
-MSE of train: 0.2876
-MSE of test: 2.8104
+MSE of train: 0.966266666667
+MSE of test: 9.6008
+
 Num train: 750, Num test: 250
 Done!
-Training time (secs): 0.068
+Training time (secs): 0.071
 Done!\Predicting time (secs): 0.001
-MSE of train: 0.27956
-MSE of test: 2.04292
+MSE of train: 0.961253333333
+MSE of test: 4.70164
+
 Num train: 7500, Num test: 2500
 Done!
-Training time (secs): 0.573
-Done!\Predicting time (secs): 0.005
-MSE of train: 0.242564
-MSE of test: 1.475768
+Training time (secs): 0.588
+Done!\Predicting time (secs): 0.007
+MSE of train: 0.817569333333
+MSE of test: 4.458088
+
+Num train: 75000, Num test: 25000
+Done!
+Training time (secs): 7.499
+Done!\Predicting time (secs): 0.124
+MSE of train: 0.775074533333
+MSE of test: 4.3869608
+
+Num train: 375000, Num test: 125000
+Done!
+Training time (secs): 50.756
+Done!\Predicting time (secs): 0.928
+MSE of train: 0.751093928889
+MSE of test: 4.19963902
+
 Num train: 750000, Num test: 250000
 Done!
-Training time (secs): 120.131
-Done!\Predicting time (secs): 1.997
-MSE of train: 0.228655786667
-MSE of test: 1.27320156
+Training time (secs): 115.728
+Done!\Predicting time (secs): 2.443
+MSE of train: 0.751730151852
+MSE of test: 4.19111652111
+
 Num train: 1500000, Num test: 500000
 Done!
-Training time (secs): 274.720
-Done!\Predicting time (secs): 5.003
-MSE of train: 0.225283099378
-MSE of test: 1.2598894425
-Num train: 2250000, Num test: 750000
-Done!
-Training time (secs): 472.294
-Done!\Predicting time (secs): 9.837
-MSE of train: 0.222719563512
-MSE of test: 1.24999127481
+Training time (secs): 265.611
+Done!\Predicting time (secs): 6.147
+MSE of train: 0.751061572237
+MSE of test: 4.16448450847
