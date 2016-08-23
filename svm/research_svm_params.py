@@ -1,6 +1,6 @@
 from sklearn.grid_search import GridSearchCV
 from sklearn.metrics import make_scorer
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.svm import SVR
 from sklearn.cross_validation import train_test_split
 from sklearn import metrics
 from sklearn.metrics import mean_squared_error
@@ -23,24 +23,19 @@ y_all = births[target_col]  # corresponding targets/labels
 
 # 500,000 was the best sample size while still giving the maximum accuracy
 # Obtained by testing sample sizes
-sample_size = 50000
+sample_size = 1000
 num_train = int(sample_size*0.75)
 num_test = int(sample_size*0.25)
 X_train, X_test, y_train, y_test = \
     train_test_split(X_all, y_all, test_size=num_test, train_size=num_train, random_state=42)
 
-parameters = {
-    'n_estimators':(10,50,100,500,1000,5000),
-    'max_features':(0.25,0.5,0.75)
-}
-randClf = RandomForestRegressor()
+parameters = [
+  {'C': [1, 10, 100, 1000], 'kernel': ['linear']},
+  # {'C': [1, 10, 100, 1000], 'gamma': [0.001, 0.0001], 'kernel': ['rbf']},
+]
+svmClf = SVR()
 scorer = make_scorer(performance_metric, greater_is_better=False)
-reg = GridSearchCV(randClf, parameters, scorer) # Maybe use cv=20?
-
-# randClf.fit(X_train, y_train)
-# y_pred = randClf.predict(X_test)
-# print 'MSE of train: {}'.format(mean_squared_error(y_train, randClf.predict(X_train)))
-# print 'MSE of test: {}'.format(mean_squared_error(y_test, y_pred))
+reg = GridSearchCV(svmClf, parameters, scorer) # Maybe use cv=20?
 
 # Fit the learner to the training data to obtain the best parameter set
 print "Final Model: "

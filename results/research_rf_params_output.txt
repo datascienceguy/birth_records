@@ -1,0 +1,71 @@
+For training size 1000 (using processed births file):
+GridSearchCV(cv=None, error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'n_estimators': (100, 500, 1000), 'min_samples_leaf': (20, 50, 100)},
+       pre_dispatch='2*n_jobs', refit=True,
+       scoring=make_scorer(performance_metric, greater_is_better=False),
+       verbose=0)
+RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=50,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=1000, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False)
+MSE of train: 3.69586951353
+MSE of test: 4.31979902628
+[ 0.03707857  0.          0.00671971  0.          0.00813934  0.0029009
+  0.03380621  0.03006933  0.2302116   0.05976851  0.00494625  0.00108577
+  0.03727737  0.          0.          0.          0.00690692  0.00324697
+  0.          0.06275207  0.          0.          0.07770996  0.27272297
+  0.          0.          0.          0.          0.          0.          0.
+  0.          0.          0.12465755  0.          0.          0.          0.
+  0.          0.          0.          0.          0.          0.        ]
+['03momAge', '04isMomAsian', '04isMomBlack', '04isMomMultipleRace', '04isMomWhite', '05isMomMarried', '06momBMI', '07momHeightInches', '08momWeightGain', '09momPrePregWeightPounds', '10numYearsSincePeriod', '11isMomHSGrad', '12dadAge', '13isDadAsian', '13isDadBlack', '13isDadMultipleRace', '13isDadWhite', '14isDadHSGrad', '15hadPriorTerminations', '16numMonthsSinceLastLiveBirth', '17hadPriorBirthAndDead', '18hadPriorBirthAndAlive', '19prenatalCareMonthBegan', '20numPrenatalVisits', '21numDailyCigarettesPriorPreg', '22numDailyCigarettesFirstTri', '23numDailyCigarettesSecondTri', '24numDailyCigarettesThirdTri', '25prePregDiabetes', '26gestationalDiabetes', '27prePregHypertension', '28gestationalHypertension', '29hypertensionEclampsia', '30noRiskFactors', '31gonorrhea', '32syphylis', '33chlamydia', '34hepatitisB', '35hepatitisC', '36noInfections', '37prevPretermBirth', '38usedInfertility', '39fertilityEnhanceDrugs', '40assistReproductiveTech']
+real	1m24.271s
+user	0m57.798s
+sys	0m7.208s
+
+-------------------
+
+For training size 10,000 (using processed births file)
+
+GridSearchCV(cv=None, error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'n_estimators': (100, 500, 1000), 'min_samples_leaf': (20, 50, 100)},
+       pre_dispatch='2*n_jobs', refit=True,
+       scoring=make_scorer(performance_metric, greater_is_better=False),
+       verbose=0)
+RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=20,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=1000, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False)
+MSE of train: 3.34219379342
+MSE of test: 3.92240259196
+[  4.12707257e-02   2.30295990e-04   5.46248139e-03   6.78896665e-06
+   7.53155032e-03   8.23506849e-03   3.12512523e-02   2.30913957e-02
+   1.20115663e-01   4.20757384e-02   3.37351660e-02   1.25624523e-03
+   4.38088049e-02   1.08561055e-04   6.05215787e-03   0.00000000e+00
+   8.03901289e-03   7.90942167e-03   3.12389489e-05   1.40216105e-01
+   0.00000000e+00   0.00000000e+00   1.11253293e-01   2.08624288e-01
+   2.24629349e-03   6.36078971e-04   3.88024557e-04   1.51214654e-03
+   2.51138494e-03   7.99172380e-04   5.92176399e-04   2.83424978e-02
+   0.00000000e+00   9.35016478e-02   0.00000000e+00   0.00000000e+00
+   2.12503836e-05   0.00000000e+00   0.00000000e+00   5.35025591e-05
+   2.54097207e-02   6.71303669e-04   5.66895262e-05   2.95285491e-03]
+['03momAge', '04isMomAsian', '04isMomBlack', '04isMomMultipleRace', '04isMomWhite', '05isMomMarried', '06momBMI', '07momHeightInches', '08momWeightGain', '09momPrePregWeightPounds', '10numYearsSincePeriod', '11isMomHSGrad', '12dadAge', '13isDadAsian', '13isDadBlack', '13isDadMultipleRace', '13isDadWhite', '14isDadHSGrad', '15hadPriorTerminations', '16numMonthsSinceLastLiveBirth', '17hadPriorBirthAndDead', '18hadPriorBirthAndAlive', '19prenatalCareMonthBegan', '20numPrenatalVisits', '21numDailyCigarettesPriorPreg', '22numDailyCigarettesFirstTri', '23numDailyCigarettesSecondTri', '24numDailyCigarettesThirdTri', '25prePregDiabetes', '26gestationalDiabetes', '27prePregHypertension', '28gestationalHypertension', '29hypertensionEclampsia', '30noRiskFactors', '31gonorrhea', '32syphylis', '33chlamydia', '34hepatitisB', '35hepatitisC', '36noInfections', '37prevPretermBirth', '38usedInfertility', '39fertilityEnhanceDrugs', '40assistReproductiveTech']
+
+real	4m32.361s
+user	4m9.607s
+sys	0m8.954s
+
+For training size 100,000 (using small births processed file)

@@ -1,0 +1,37 @@
+Num train: 7, Num test: 2
+Done!
+Training time (secs): 0.003
+Done!\Predicting time (secs): 0.001
+MSE of train: 0.288571420235
+MSE of test: 2.57037916217e-16
+
+
+Num train: 75, Num test: 25
+Done!
+Training time (secs): 0.002
+Done!\Predicting time (secs): 0.000
+MSE of train: 4.18531913285
+MSE of test: 8.80042157455
+
+
+Num train: 750, Num test: 250
+Done!
+Training time (secs): 0.099
+Done!\Predicting time (secs): 0.014
+MSE of train: 2.50114831532
+MSE of test: 4.72889007417
+
+
+Num train: 7500, Num test: 2500
+Done!
+Training time (secs): 10.032
+Done!\Predicting time (secs): 1.611
+MSE of train: 3.21481901524
+MSE of test: 4.38264120877
+
+Num train: 75000, Num test: 25000
+Done!
+Training time (secs): 2936.428
+Done!\Predicting time (secs): 131.439
+MSE of train: 3.12723055694
+MSE of test: 4.63840259075

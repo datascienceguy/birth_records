@@ -6,7 +6,7 @@ import pandas as pd
 import time
 
 inputFilePath = '/Users/edye/data/birth_records/2014/2014_births_processed.txt'
-sample_size = 500000
+sample_size = 5000
 
 births = pd.read_csv(inputFilePath,delimiter="\t")
 feature_cols = list(births.columns[2:])  # all columns but first two are features
@@ -39,5 +39,23 @@ y_pred = randClf.predict(X_test)
 end = time.time()
 print "Done!\Predicting time (secs): {:.3f}".format(end - start)
 
+start = time.time()
+y_pred = randClf.predict(X_test)
+end = time.time()
+print "Done!\Predicting time (secs): {:.3f}".format(end - start)
+
+# Generate preemies dataset
+preemies = births[births['01numWeeksAtBirthOE'] < 37].sample(n=1000)
+preemies_features = preemies[feature_cols]
+preemies_target = preemies[target_col]
+preemies_pred = randClf.predict(preemies_features)
+
+fullterms = births[births['01numWeeksAtBirthOE'] >= 37].sample(n=1000)
+fullterms_features = fullterms[feature_cols]
+fullterms_target = fullterms[target_col]
+fullterms_pred = randClf.predict(fullterms_features)
+
 print 'RMSE of train: {}'.format(sqrt(mean_squared_error(y_train, randClf.predict(X_train))))
 print 'RMSE of test: {}'.format(sqrt(mean_squared_error(y_test, y_pred)))
+print 'RMSE of preemies: {}'.format(sqrt(mean_squared_error(preemies_target, preemies_pred)))
+print 'RMSE of full terms: {}'.format(sqrt(mean_squared_error(fullterms_target, fullterms_pred)))

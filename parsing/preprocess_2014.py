@@ -25,13 +25,12 @@ newBirths = births.copy(deep=False)
 # For each column in data, get frequencies of values and set for null values
 for column in births:
     freqs = getFrequencies(births[column])
+
+    # For all null values, select a value at random from the distribution within the column
+    # By using the same frequency of the non-null data within the column,
+    # we do not add noise to the data set.
     newBirths[column] = births[column].apply(lambda x: getRandValueByDistr(freqs) if math.isnan(x) else x)
 
 # Using float_format='%.f' to save space in data file.  No need o store floating points
-# for all the int columns.  This was tripling size of post_processed file.
+# for all the int columns.  This was tripling size of post_processed file.a
 newBirths.to_csv(outputFilePath, sep='\t', index=False, float_format='%.f')
-
-
-# Some things we can do to preprocess the data:
-# 1) To fill in null values, we can randomly select a value from the
-#    entire set of values for that feature
